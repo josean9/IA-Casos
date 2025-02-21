@@ -1,0 +1,22 @@
+# Definir el nombre del entorno virtual
+VENV_NAME = venv
+
+# Crear un entorno virtual
+create_venv:
+	python3 -m venv $(VENV_NAME)
+	@echo "Entorno virtual $(VENV_NAME) creado."
+
+# Activar el entorno virtual (Este paso lo debes hacer manualmente, no funciona directamente en Makefile)
+# Instalar dependencias del archivo requirements.txt
+install_dependencies: create_venv
+	./$(VENV_NAME)/bin/pip install -r requirements.txt
+	@echo "Dependencias instaladas."
+
+# Limpiar el entorno
+clean:
+	rm -rf $(VENV_NAME)
+	@echo "Entorno limpio."
+
+# Comando para ejecutar una aplicación Python, por ejemplo:
+run:
+	./$(VENV_NAME)/bin/python app.py
