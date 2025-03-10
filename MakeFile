@@ -1,0 +1,6 @@
+SHELL := powershell.exe
+
+activate:
+	Set-ExecutionPolicy Unrestricted -Scope Process -Force; \
+	.\venv\Scripts\Activate
+
