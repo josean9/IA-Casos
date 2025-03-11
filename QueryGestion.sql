@@ -11,3 +11,10 @@ SELECT
     ORDER BY MONTH(CAST(Convert(DATE,Sales_Date,103) AS DATE))) IS NULL
     THEN NULL
     ELSE ROUND(100.0 * (COUNT(*) - LAG(COUNT(*)) OVER (PARTITION BY YEAR(CAST(Convert(DATE,Sales_Date,103)))) AS DATE))
+
+
+    FROM TABLE1 sales
+    left join TABLE2 products
+    on TABLE1.Product_ID = TABLE2.Product_ID
+    GROUP BY Product_ID, Pagement_Method
+    ORDER BY Año, Mes
