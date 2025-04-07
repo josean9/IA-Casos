@@ -4,42 +4,58 @@ SELECT * FROM [usecases].DATAEX.[MMM03_OFFLINE]
 SELECT * FROM [usecases].DATAEX.[MMM04_TIME]
 SELECT * FROM [usecases].DATAEX.[MMM05_INV]
 
-SELECT 
-    -- Datos de tráfico web
-    w.ID_Date,
-    w.Unique_visitors,
 
-    -- Datos de ventas y visitas a tiendas
-    o.Sales,
-    o.Visit_Store,
+SELECT
+    W.ID_Date,
+    W.Unique_visitors,
+    W.PDFBrochuresDownloaded,
+    W.ProductConfigurator,
+    W.Product_configurator_Visists,
+    W.SocialNetworks,
+    W.DirectTraffic,
+    W.EMail,
+    W.NaturalSearch,
+    W.OnlineMedia,
+    W.OtherReferrer,
+    W.PaidSearch,
+    V.RopaHombre,
+    V.RopaMujer,
+    V.Complementos,
+    V.Zapatos,
+    V.Home,
+    V.Interior,
+    V.Otros,
+    V.SR_Total,
+    O.Visit_Store,
+    O.Mercado,
+    O.Sales,
+    O.Complementos,
+    O.Ropa_hombre,
+    O.Zapatos,
+    O.Ropa_Mujer,
+    O.Home,
+    O.Interior,
+    O.Otros,
+    O.Ticket_medio,
+    T.Dias_mes,
+    T.Dia_inicio_mes,
+    T.Dia_findemes,
+    T.working_days,
+    T.Dias_fines_semana,
+    T.Easterweek,
+    I.CINE,
+    I.EXTERIOR,
+    I.INTERNET,
+    I.PRENSA,
+    I.PRODUCCION,
+    I.RADIO,
+    I.REVISTAS,
+    I.PlataformasVideo,
+    I.VARIOS,
+    I.INV_Total
 
-    -- Datos de inversión publicitaria
-    i.CINE,
-    i.EXTERIOR,
-    i.INTERNET,
-    i.PRENSA,
-    i.PRODUCCION,
-    i.RADIO,
-    i.REVISTAS,
-    i.PlataformasVideo,
-    i.VARIOS,
-    i.INV_Total,
-
-    -- Factores temporales
-    t.working_days,
-    t.Dias_fines_semana,
-    t.Easterweek
-FROM 
-    DATAEX.MMM01_WEB w  -- Tabla de tráfico web
-INNER JOIN 
-    DATAEX.MMM03_OFFLINE o  -- Tabla de ventas y visitas a tiendas
-ON 
-    w.ID_Date = o.ID_Date
-INNER JOIN 
-    DATAEX.MMM05_INV i  -- Tabla de inversión publicitaria
-ON 
-    w.ID_Date = i.ID_Date
-INNER JOIN 
-    DATAEX.MMM04_TIME t  -- Tabla de factores temporales
-ON 
-    w.ID_Date = t.ID_Date;
+FROM [usecases].DATAEX.[MMM01_WEB] W
+JOIN [usecases].DATAEX.[MMM02_VISIT] V ON W.ID_Date = V.ID_Date
+JOIN [usecases].DATAEX.[MMM03_OFFLINE] O ON W.ID_Date = O.ID_Date
+JOIN [usecases].DATAEX.[MMM04_TIME] T ON W.ID_Date = T.ID_Date
+JOIN [usecases].DATAEX.[MMM05_INV] I ON W.ID_Date = I.ID_Date
